@@ -58,13 +58,10 @@ print(waypoints[0])
 # YOUR CODE HERE
 
 
-def print_key_values(l):
-    x = []
-    for dictionary in l:
+def print_key_values(lst):
+    for dictionary in lst:
         for key in dictionary:
-            x.append(f"{key}: {dictionary[key]}")
-    return ('\n'.join(map(str, x)))
+            print(f"{key}: {dictionary[key]}")
 
 
-y = print_key_values(waypoints)
-print(y)
+print_key_values(waypoints)

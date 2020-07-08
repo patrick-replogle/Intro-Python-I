@@ -18,15 +18,43 @@ and does the following:
    the format that your program expects arguments to be given.
    Then exit the program.
 
-Note: the user should provide argument input (in the initial call to run the file) and not 
+Note: the user should provide argument input (in the initial call to run the file) and not
 prompted input. Also, the brackets around year are to denote that the argument is
 optional, as this is a common convention in documentation.
 
-This would mean that from the command line you would call `python3 14_cal.py 4 2015` to 
-print out a calendar for April in 2015, but if you omit either the year or both values, 
+This would mean that from the command line you would call `python3 14_cal.py 4 2015` to
+print out a calendar for April in 2015, but if you omit either the year or both values,
 it should use today’s date to get the month and year.
 """
 
 import sys
 import calendar
 from datetime import datetime
+
+user_input = input(
+    "select a [month] (##) and [year] (####) seperated by only a comma: ").split(',')
+
+while("" in user_input):
+    user_input.remove("")
+
+
+def is_date_valid(lst):
+    if(len(lst) == 1) and lst[0].isdigit():
+        if int(lst[0]) > 0 and int(lst[0]) < 13:
+            return True
+    elif(len(lst) == 2) and lst[0].isdigit() and lst[1].isdigit():
+        if int(lst[0]) > 0 and int(lst[0]) < 13 and int(lst[1]) > 0:
+            return True
+    else:
+        return False
+
+
+if len(user_input) == 0:
+    print(calendar.month(datetime.now().year, datetime.now().month))
+elif len(user_input) == 1 and is_date_valid(user_input):
+    print(calendar.month(datetime.now().year, int(user_input[0])))
+elif len(user_input) == 2 and is_date_valid(user_input):
+    print(calendar.month(int(user_input[1]), int(user_input[0])))
+else:
+    print("Please enter an optional month and/or year using numbers only. Seperate month and year by a comma")
+    sys.exit()
