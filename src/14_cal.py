@@ -50,5 +50,5 @@ elif len(sys.argv) == 2 and is_date_valid(sys.argv):
 elif len(sys.argv) == 3 and is_date_valid(sys.argv):
     print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
 else:
-    print("Format format file command like this: 14_cal.py mm yyyy")
+    print("Please refer to format guidelines and only use numbers for optional month and year arguments: python3 14_cal.py mm yyyy")
     sys.exit()
