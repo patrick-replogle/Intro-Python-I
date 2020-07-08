@@ -31,38 +31,24 @@ import sys
 import calendar
 from datetime import datetime
 
-initial_input = input(
-    "select a [month] (##) and [year] (####) seperated by a comma: ").split(',')
-
-
-def remove_spaces(lst):
-    result = []
-    for x in lst:
-        if x != "":
-            result.append(x.replace(" ", ""))
-    return result
-
 
 def is_date_valid(lst):
-    if(len(lst) == 1) and lst[0].isdigit():
-        if int(lst[0]) > 0 and int(lst[0]) < 13:
+    if(len(lst) == 2) and lst[1].isdigit():
+        if int(lst[1]) > 0 and int(lst[1]) < 13:
             return True
-    elif(len(lst) == 2) and lst[0].isdigit() and lst[1].isdigit():
-        if int(lst[0]) > 0 and int(lst[0]) < 13 and int(lst[1]) > 0:
+    elif(len(lst) == 3) and lst[1].isdigit() and lst[2].isdigit():
+        if int(lst[1]) > 0 and int(lst[1]) < 13 and int(lst[2]) > 0:
             return True
     else:
         return False
 
 
-user_input = remove_spaces(initial_input)
-
-if len(user_input) == 0:
+if len(sys.argv) == 1:
     print(calendar.month(datetime.now().year, datetime.now().month))
-elif len(user_input) == 1 and is_date_valid(user_input):
-    print(calendar.month(datetime.now().year, int(user_input[0])))
-elif len(user_input) == 2 and is_date_valid(user_input):
-    print(calendar.month(int(user_input[1]), int(user_input[0])))
+elif len(sys.argv) == 2 and is_date_valid(sys.argv):
+    print(calendar.month(datetime.now().year, int(sys.argv[1])))
+elif len(sys.argv) == 3 and is_date_valid(sys.argv):
+    print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
 else:
-    print(
-        "Please enter an optional [month] and/or [year] using numbers only. Seperate month and year by a comma")
+    print("Format format file command like this: 14_cal.py mm yyyy")
     sys.exit()
