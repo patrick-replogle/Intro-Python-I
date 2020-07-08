@@ -31,11 +31,16 @@ import sys
 import calendar
 from datetime import datetime
 
-user_input = input(
-    "select a [month] (##) and [year] (####) seperated by only a comma: ").split(',')
+initial_input = input(
+    "select a [month] (##) and [year] (####) seperated by a comma: ").split(',')
 
-while("" in user_input):
-    user_input.remove("")
+
+def remove_spaces(lst):
+    result = []
+    for x in lst:
+        if x != "":
+            result.append(x.replace(" ", ""))
+    return result
 
 
 def is_date_valid(lst):
@@ -49,6 +54,8 @@ def is_date_valid(lst):
         return False
 
 
+user_input = remove_spaces(initial_input)
+
 if len(user_input) == 0:
     print(calendar.month(datetime.now().year, datetime.now().month))
 elif len(user_input) == 1 and is_date_valid(user_input):
@@ -56,5 +63,6 @@ elif len(user_input) == 1 and is_date_valid(user_input):
 elif len(user_input) == 2 and is_date_valid(user_input):
     print(calendar.month(int(user_input[1]), int(user_input[0])))
 else:
-    print("Please enter an optional month and/or year using numbers only. Seperate month and year by a comma")
+    print(
+        "Please enter an optional [month] and/or [year] using numbers only. Seperate month and year by a comma")
     sys.exit()
