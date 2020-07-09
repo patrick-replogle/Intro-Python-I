@@ -58,10 +58,9 @@ print(waypoints[0])
 # YOUR CODE HERE
 
 
-def print_key_values(lst):
-    for dictionary in lst:
-        for key in dictionary:
-            print(f"{key}: {dictionary[key]}")
+def print_waypoint_values(lst):
+    for w in lst:
+        print(f"name: {w['name']}, lat: {w['lat']}, lon: {w['lon']}")
 
 
-print_key_values(waypoints)
+print_waypoint_values(waypoints)
