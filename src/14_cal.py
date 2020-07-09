@@ -44,7 +44,9 @@ def is_date_valid(lst):
 
 
 if len(sys.argv) == 1:
-    print(calendar.month(datetime.now().year, datetime.now().month))
+    year = datetime.now().year
+    month = datetime.now().month
+    print(calendar.month(year, month))
 elif len(sys.argv) == 2 and is_date_valid(sys.argv):
     print(calendar.month(datetime.now().year, int(sys.argv[1])))
 elif len(sys.argv) == 3 and is_date_valid(sys.argv):
