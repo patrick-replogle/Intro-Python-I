@@ -24,11 +24,7 @@ print(f1(1, 2))
 def f2(*args):
     sum = 0
     for num in args:
-        if type(num) == list:
-            for x in num:
-                if type(x) == int:
-                    sum += x
-        elif type(num) == int:
+        if type(num) == int:
             sum += num
     return sum
 
